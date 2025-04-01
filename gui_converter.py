@@ -9,7 +9,7 @@ import os
 #  open file dialog
 def open_pdf_file():
     pdf_path = filedialog.askopenfilename(filetypes=[("PDF Files", "*.pdf")])
-    if not pdf_path:  # Handle where no file is selected
+    if not pdf_path:  # if no file is selected
         messagebox.showwarning("No File", "No PDF file selected.")
     return pdf_path
 
@@ -19,9 +19,9 @@ def convert_pdf_to_docx():
     try:
         pdf_path = open_pdf_file()
         if not pdf_path:
-            return  # Exit if no file was selected
+            return  
 
-
+#HERE
         docx_path = pdf_path.replace(".pdf", "_converted.docx")
 
 
