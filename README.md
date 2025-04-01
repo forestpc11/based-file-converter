@@ -5,6 +5,9 @@ A simple, free, and open-source Python-based file converter. The current version
 - Converts PDF to DOCX.
 - Extracts text and images from the PDF.
 - Preserves basic text formatting.
+
+
+  *other features, file formats, and more will be added soon.... when i have some time.....*
   
 
 
