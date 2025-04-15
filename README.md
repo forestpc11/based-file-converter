@@ -1,6 +1,6 @@
 # based-file-converter
 a file converter that isn't malware and is simple. it just works. that's it.
-A simple, free, and open-source Python-based file converter. The current version supports converting PDF files to DOCX format, and it includes image extraction and basic text formatting.
+A simple, free, and open-source Python-based file converter. The current version supports converting PDF files to DOCX format, and it includes image extraction and basic text formatting. Now with MOV to MP4 and other audio and video file extensions, with more being added later on.
 
 - PDF to DOCX
 - Extracts text and images from the PDF.
