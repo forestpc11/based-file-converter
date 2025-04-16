@@ -33,7 +33,7 @@ A simple, free, and open-source Python-based file converter. The current version
 0. Install python (3.11 or higher)
 1. Clone the repository
 2. install the requirements.txt (you need python to run this)
-3. Install FFmpeg (you need this) *gyan.dev has a build you can get for windows*
+3. Install FFmpeg (you need this) *gyan.dev has a build for windows*
 4. Add FFmpeg to your system path on windows (or put it in the same folder as the script)
 5. be based and libre-pilled
 
