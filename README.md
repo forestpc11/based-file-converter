@@ -5,12 +5,16 @@ A simple, free, and open-source Python-based file converter. The current version
 - PDF to DOCX
 - Extracts text and images from the PDF.
 - Preserves basic text formatting.
-- MOV to MP4
-- MP4 to WAV
-- MP3 to WAV
-- DOCX to PDF
 - Simple status bar at the bottom
 - Extremely plain and painfully easy to use GUI
+- Bi- directional conversion of applicable file types
+- drop down menu instead of huge stupid buttons
+ 
+          *file types*
+  PDF, DOCX, MP4, MP3, WAV, AAC, FLAC, MOV, M4A, WMA, MPG (mpeg), WEBM, WEBP
+
+  *more added soon*
+  
 
   it seems like nowadays, converting a file requires us to download VLC or some other program like audacity or use
   some online file converter that looks sketchy af. And recent reports of malware/ransomware in file converters is just.....
