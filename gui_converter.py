@@ -1,10 +1,10 @@
 import tkinter as tk
-from tkinter import filedialog, messagebox
+from tkinter import filedialog, messagebox, ttk
 from docx import Document
 import fitz
 import os
-from moviepy import VideoFileClip  # corrected
-import subprocess  #  ffmpeg
+from moviepy import VideoFileClip
+import subprocess
 
 
 def open_file(filetypes):
@@ -48,45 +48,9 @@ def convert_pdf_to_docx():
                     img_file.write(image_bytes)
 
                 doc.add_picture(image_filename)
-#HERE
+
         doc.save(docx_path)
         update_status(f"Conversion complete! Saved as {docx_path}")
-    except Exception as e:
-        update_status("Error occurred during conversion.")
-        messagebox.showerror("Error", f"An error occurred: {str(e)}")
-
-
-def convert_mp4_to_wav():
-    try:
-        update_status("Converting MP4 to WAV...")
-        video_path = open_file([("MP4 Files", "*.mp4")])
-        if not video_path:
-            return
-
-        audio_path = video_path.replace(".mp4", ".wav")
-        video = VideoFileClip(video_path)
-        video.audio.write_audiofile(audio_path)
-        update_status(f"Audio extracted and saved as {audio_path}")
-    except Exception as e:
-        update_status("Error occurred during conversion.")
-        messagebox.showerror("Error", f"An error occurred: {str(e)}")
-
-
-def convert_mp3_to_wav():
-    try:
-        update_status("Converting MP3 to WAV...")
-        mp3_path = open_file([("MP3 Files", "*.mp3")])
-        if not mp3_path:
-            return
-
-        wav_path = mp3_path.replace(".mp3", ".wav")
-
-        # convert
-        subprocess.run(["ffmpeg", "-i", mp3_path, wav_path], check=True)
-        update_status(f"MP3 converted to WAV and saved as {wav_path}")
-    except subprocess.CalledProcessError as e:
-        update_status("Error occurred during conversion.")
-        messagebox.showerror("Error", f"ffmpeg failed: {e}")
     except Exception as e:
         update_status("Error occurred during conversion.")
         messagebox.showerror("Error", f"An error occurred: {str(e)}")
@@ -113,16 +77,33 @@ def convert_docx_to_pdf():
         messagebox.showerror("Error", f"An error occurred: {str(e)}")
 
 
-def convert_mov_to_mp4():
+def convert_file():
     try:
-        update_status("Converting MOV to MP4...")
-        mov_path = open_file([("MOV Files", "*.mov")])
-        if not mov_path:
+        input_format = input_format_var.get()
+        output_format = output_format_var.get()
+
+        if input_format == output_format:
+            messagebox.showinfo("Invalid Selection", "Please select different input and output formats.")
             return
-#thanks alot billy
-        mp4_path = mov_path.replace(".mov", ".mp4")
-        subprocess.run(["ffmpeg", "-i", mov_path, mp4_path], check=True)
-        update_status(f"MOV converted to MP4 and saved as {mp4_path}")
+
+        filetypes = [(f"{input_format.upper()} files", f"*.{input_format.lower()}")]
+        input_path = open_file(filetypes)
+        if not input_path:
+            return
+
+        base, _ = os.path.splitext(input_path)
+        output_path = f"{base}.{output_format}"
+
+        update_status(f"Converting {input_format.upper()} to {output_format.upper()}...")
+
+        if input_format in ["mp4", "mov", "mpg", "webm"] and output_format in ["mp3", "wav", "aac", "flac", "wma"]:
+            clip = VideoFileClip(input_path)
+            clip.audio.write_audiofile(output_path)
+        else:
+            subprocess.run(["ffmpeg", "-i", input_path, output_path], check=True)
+
+        update_status(f"Conversion complete! Saved as {output_path}")
+
     except subprocess.CalledProcessError as e:
         update_status("Error occurred during conversion.")
         messagebox.showerror("Error", f"ffmpeg failed: {e}")
@@ -133,26 +114,37 @@ def convert_mov_to_mp4():
 
 window = tk.Tk()
 window.title("File Converter")
-window.geometry("400x300")
+window.geometry("500x400")
 
-# status bar
+frame = tk.Frame(window)
+frame.pack(pady=20)
+
+input_label = tk.Label(frame, text="Input Format:")
+input_label.grid(row=0, column=0, padx=5, pady=5, sticky="e")
+
+input_format_var = tk.StringVar()
+input_dropdown = ttk.Combobox(frame, textvariable=input_format_var)
+input_dropdown['values'] = ["mp4", "mp3", "wav", "aac", "flac", "mov", "m4a", "wma", "mpg", "webm", "webp"]
+input_dropdown.grid(row=0, column=1, padx=5, pady=5)
+
+output_label = tk.Label(frame, text="Output Format:")
+output_label.grid(row=1, column=0, padx=5, pady=5, sticky="e")
+
+output_format_var = tk.StringVar()
+output_dropdown = ttk.Combobox(frame, textvariable=output_format_var)
+output_dropdown['values'] = ["mp4", "mp3", "wav", "aac", "flac", "mov", "m4a", "wma", "mpg", "webm", "webp"]
+output_dropdown.grid(row=1, column=1, padx=5, pady=5)
+
+convert_button = tk.Button(window, text="Convert File", command=convert_file, height=2, width=20)
+convert_button.pack(pady=10)
+
+pdf_button = tk.Button(window, text="Convert PDF to DOCX", command=convert_pdf_to_docx)
+pdf_button.pack(pady=5)
+
+docx_button = tk.Button(window, text="Convert DOCX to PDF", command=convert_docx_to_pdf)
+docx_button.pack(pady=5)
+
 status_bar = tk.Label(window, text="Ready", bd=1, relief=tk.SUNKEN, anchor="w")
 status_bar.pack(side=tk.BOTTOM, fill=tk.X)
-
-# Buttons
-pdf_button = tk.Button(window, text="Select PDF and Convert to DOCX", command=convert_pdf_to_docx)
-pdf_button.pack(pady=10)
-
-mov_button = tk.Button(window, text="Select MOV and Convert to MP4", command=convert_mov_to_mp4)
-mov_button.pack(pady=10)
-
-mp4_button = tk.Button(window, text="Select MP4 and Convert to WAV", command=convert_mp4_to_wav)
-mp4_button.pack(pady=10)
-
-mp3_button = tk.Button(window, text="Select MP3 and Convert to WAV", command=convert_mp3_to_wav)
-mp3_button.pack(pady=10)
-
-docx_button = tk.Button(window, text="Select DOCX and Convert to PDF", command=convert_docx_to_pdf)
-docx_button.pack(pady=10)
 
 window.mainloop()
