@@ -2,13 +2,13 @@
 a file converter that isn't malware and is simple. it just works. that's it.
 A simple, free, and open-source Python-based file converter. The current version supports converting PDF files to DOCX format, and it includes image extraction and basic text formatting. Now with MOV to MP4 and other audio and video file extensions, with more being added later on.
 
-- PDF to DOCX
 - Extracts text and images from the PDF.
 - Preserves basic text formatting.
 - Simple status bar at the bottom
 - Extremely plain and painfully easy to use GUI
 - Bi- directional conversion of applicable file types
 - drop down menu instead of huge stupid buttons
+- Uses FFMPEG 
  
           *file types*
   PDF, DOCX, MP4, MP3, WAV, AAC, FLAC, MOV, M4A, WMA, MPG (mpeg), WEBM, WEBP
