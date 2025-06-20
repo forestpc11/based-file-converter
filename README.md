@@ -22,7 +22,15 @@ A simple, free, and open-source Python-based file converter. The current version
   whatever you want with it. i'm just here to learn more about python and have some fun along the way.
 
   *other features, file formats, and more will be added soon.... when i have some time.....*
+
+  6/19/25
+  more error handling
+  removed buttons entirely (pdf and docx are in dropdowns now)
+  grouped file types next to each other
+  crappy dark mode toggle (it will look better soon)
+  image -> image should work now using pillow (jpg -> png, webp -> bmp, etc.)
   
+
 
 
 
@@ -35,5 +43,6 @@ A simple, free, and open-source Python-based file converter. The current version
 2. install the requirements.txt (you need python to run this)
 3. Install FFmpeg (you need this) *gyan.dev has a build for windows*
 4. Add FFmpeg to your system path on windows (or put it in the same folder as the script)
-5. be based and libre-pilled
+5. download Pillow (pip install pillow)
+6. be based and libre-pilled
 
