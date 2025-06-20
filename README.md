@@ -24,10 +24,10 @@ A simple, free, and open-source Python-based file converter. The current version
   *other features, file formats, and more will be added soon.... when i have some time.....*
 
   6/19/25
-  more error handling
-  removed buttons entirely (pdf and docx are in dropdowns now)
-  grouped file types next to each other
-  crappy dark mode toggle (it will look better soon)
+  more error handling,
+  removed buttons entirely (pdf and docx are in dropdowns now),
+  grouped file types next to each other,
+  crappy dark mode toggle (it will look better soon),
   image -> image should work now using pillow (jpg -> png, webp -> bmp, etc.)
   
 
