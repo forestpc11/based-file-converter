@@ -2,3 +2,4 @@ pdfplumber
 python-docx
 PyMuPDF
 tkinter
+Pillow
