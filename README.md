@@ -29,8 +29,8 @@ A simple, free, and open-source Python-based file converter. The current version
   grouped file types next to each other,
   crappy dark mode toggle (it will look better soon),
   image -> image should work now using pillow (jpg -> png, webp -> bmp, etc.)
-  logging was also added. a box below will tell you everything that happens and will be logged, along with event and error messages that apply
-  an output destination folder selection also added (its a button. you can't miss it)
+  logging was also added. a box below will tell you everything that happens and will be logged, along with event and error messages that apply,
+  an output destination folder selection was also added (its a button. you can't miss it)
 
 
 
