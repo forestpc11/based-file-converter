@@ -46,3 +46,9 @@ A simple, free, and open-source Python-based file converter. The current version
 5. download Pillow (pip install pillow)
 6. be based and libre-pilled
 
+OR 
+
+
+# EXE in Releases
+
+1. just get the exe if you are that lazy
